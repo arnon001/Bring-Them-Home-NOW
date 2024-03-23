@@ -16,8 +16,13 @@ public final class BringThemHomeNow extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getLogger().info("Bring Them Home Now Timer has been enabled!");
-        //new version checker.
+        //Loading Config.
         loadConfig();
+        //bStats
+        int pluginId = 21400;
+        Metrics metrics = new Metrics(this, pluginId);
+
+        //Checking for new version of the plugin
         new UpdateChecker(this, 115760).getVersion(version -> {
             if(this.getDescription().getVersion().equals(version)) {
                 getLogger().info("There isn't a new update available.");
