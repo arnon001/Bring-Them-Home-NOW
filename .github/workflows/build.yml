@@ -38,31 +38,3 @@ jobs:
         with:
           name: build
           path: target/*.jar
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: target
-
-      - name: Publish release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: target/*.jar
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
-          body: |
-            Changes in this release:
-            ${{ github.event.head_commit.message }}
-          draft: false
-          prerelease: false
