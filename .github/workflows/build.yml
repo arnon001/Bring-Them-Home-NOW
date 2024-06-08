@@ -27,14 +27,16 @@ jobs:
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: ${{ runner.os }}-gradle
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Cache Gradle wrapper
         uses: actions/cache@v3
         with:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
-          restore-keys: ${{ runner.os }}-gradle-wrapper
+          restore-keys: |
+            ${{ runner.os }}-gradle-wrapper-
 
       - name: Build with Gradle
         run: ./gradlew build
@@ -48,7 +50,7 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
 
     steps:
       - name: Checkout repository
