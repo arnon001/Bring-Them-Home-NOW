@@ -50,7 +50,7 @@ public final class BringThemHomeNow extends JavaPlugin {
         long currentTimeUnix = Instant.now().getEpochSecond();
         String message = getMessage(currentTimeUnix);
         //the actual number of hostages
-        int hostageCount = 73;
+        int hostageCount = 59;
         String HostagesMsg = String.format(ChatColor.RED + "There Are %d Hostages Right Now In Gaza Kidnapped", hostageCount);
 
         Bukkit.getServer().broadcastMessage(ChatColor.RED + "BRING THEM HOME NOW!");
