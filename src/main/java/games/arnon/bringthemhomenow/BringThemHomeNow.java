@@ -12,6 +12,8 @@ public final class BringThemHomeNow extends JavaPlugin {
 
     private int sendMessageInterval = 10;
 
+    public int hostagesCount = 50;
+    // It's not c(k)onstant since we still have hostages there, and we hope for them to come back home.
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -49,9 +51,8 @@ public final class BringThemHomeNow extends JavaPlugin {
     private void SendMessage() {
         long currentTimeUnix = Instant.now().getEpochSecond();
         String message = getMessage(currentTimeUnix);
-        //the actual number of hostages
-        int hostageCount = 59;
-        String HostagesMsg = String.format(ChatColor.RED + "There Are %d Hostages Right Now In Gaza Kidnapped", hostageCount);
+
+        String HostagesMsg = String.format(ChatColor.RED + "There Are %d Hostages Right Now In Gaza Kidnapped", hostagesCount);
 
         Bukkit.getServer().broadcastMessage(ChatColor.RED + "BRING THEM HOME NOW!");
         Bukkit.getServer().broadcastMessage(message);
